@@ -740,7 +740,8 @@ class User < Principal
   def self.anonymous
     anonymous_user = AnonymousUser.first
     if anonymous_user.nil?
-      anonymous_user = AnonymousUser.create(:lastname => 'Anonymous', :firstname => '', :login => '', :status => 0)
+      anonymous_user = AnonymousUser.new(:lastname => 'Anonymous', :firstname => '', :login => '', :status => 0)
+      anonymous_user.save(validate: false)
       raise 'Unable to create the anonymous user.' if anonymous_user.new_record?
     end
     anonymous_user

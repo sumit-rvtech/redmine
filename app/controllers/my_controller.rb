@@ -57,6 +57,7 @@ class MyController < ApplicationController
     @pref = @user.pref
     if request.post?
       @user.safe_attributes = params[:user] if params[:user]
+      @user.photo = params[:user].try(:[],"photo")
       @user.pref.attributes = params[:pref] if params[:pref]
       if @user.save
         @user.pref.save

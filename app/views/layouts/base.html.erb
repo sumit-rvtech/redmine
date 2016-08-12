@@ -58,10 +58,11 @@
 <div id="wrapper2">
 <div id="wrapper3">
 <div id="top-menu">
-    <div id="account" class="">
+    <div id="account">
         <%= render_menu :account_menu -%>
     </div>
     <%= content_tag('div', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}".html_safe, :id => 'loggedas') if User.current.logged? %>
+    <%= image_tag User.current.photo.url(:thumb),height: 40, width: 45, style: "float:right" if User.current.try(:photo).present? && User.current.logged?%>
     <%= render_menu :top_menu if User.current.logged? || !Setting.login_required? -%>
 </div>
 
@@ -115,7 +116,7 @@
 
 <div id="footer">
   <div class="bgl"><div class="bgr">
-    Powered by <%= link_to Redmine::Info.app_name, Redmine::Info.url %> &copy; 2006-2016 Jean-Philippe Lang
+    Copyright 2016 © <strong>RV Technologies Softwares Pvt. Ltd.</strong> | All Rights Reserved
   </div></div>
 </div>
 </div>

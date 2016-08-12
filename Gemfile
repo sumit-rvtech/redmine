@@ -56,6 +56,9 @@ platforms :jruby do
   gem "activerecord-jdbc-adapter", "~> 1.3.2"
 end
 
+#paperclip for images
+gem "paperclip", "~> 5.0.0"
+
 # Include database gems for the adapters found in the database
 # configuration file
 require 'erb'

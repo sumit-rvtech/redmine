@@ -87,7 +87,17 @@ $(document).ready(setupFlyout);
 
 $(document).ready(function(){
   $("#flash_notice").append("<button style='float:right;' class='close' data-dismiss='alert'>×</button>");
+  $("#errorExplanation").append("<button style='float:right;' class='close' data-dismiss='alert'>×</button>");
   $('.close').click(function(){
     $(this).closest('div').remove();
   });
+
+  $('.closed_projects').click(function(){
+    if (this.checked) {
+      window.location = "/projects?" + $.param({utf8: "✓",closed: 1})
+    }
+    else{
+      window.location = "/projects?" + $.param({utf8: "✓"})
+    }
+  }) 
 });

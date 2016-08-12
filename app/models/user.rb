@@ -118,6 +118,10 @@ class User < Principal
   before_destroy :remove_references_before_destroy
   after_save :update_notified_project_ids, :destroy_tokens
 
+  validates_presence_of :photo
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
+
   scope :in_group, lambda {|group|
     group_id = group.is_a?(Group) ? group.id : group.to_i
     where("#{User.table_name}.id IN (SELECT gu.user_id FROM #{table_name_prefix}groups_users#{table_name_suffix} gu WHERE gu.group_id = ?)", group_id)

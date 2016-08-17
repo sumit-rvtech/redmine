@@ -123,6 +123,7 @@ class AccountController < ApplicationController
       @user = User.new
       @user.safe_attributes = user_params
       @user.admin = false
+      @user.photo = params[:user].try(:[],"photo")
       @user.register
       if session[:auth_source_registration]
         @user.activate
